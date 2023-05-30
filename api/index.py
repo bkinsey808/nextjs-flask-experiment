@@ -1,5 +1,7 @@
 """ test """
+import json
 from flask import Flask
+
 app = Flask(__name__)
 
 
@@ -7,9 +9,11 @@ app = Flask(__name__)
 @app.route('/<path:path>')
 def catch_all(path):
     """Function printing path."""
-    print(path)
-    # return '{"path": "' + path + '"}'
-    return f'{{"path": "{path}"}}'
+    d = {
+        "path": path
+    }
+
+    return json.dumps(d)
 
 # @app.route("/api/python")
 # def hello_world():
